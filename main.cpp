@@ -1,3 +1,10 @@
+/*Program to find Numerical Integration using Rectangle Rule
+Sajin Sabu
+Grad student
+UNC Charlotte
+09/11/2017
+*/
+
 #include <iostream>
 
 #ifdef __cplusplus
@@ -13,16 +20,20 @@ float f4(float x, int intensity);
 }
 #endif
 
+/* Function to compute Numerical Integration */
+
 float compute_fx(int functionid, float a, float b, int n, int intensity) {
 
+  /*local variable declarations*/
   float result = 0.0, x = 0.0;
   float multiplier = (b-a)/(float)n;
   int i;
 
-
+  /*loop with calculates the integrated value*/
   for (i=0; i<n; i++) {
 
     x = a + (i + 0.5) * multiplier;
+
     switch (functionid) {
 
       case 1:
@@ -38,9 +49,7 @@ float compute_fx(int functionid, float a, float b, int n, int intensity) {
         result = result + f4(x, intensity)*multiplier;
         break;
       default:
-
         break;
-
     }
 
   }
@@ -55,15 +64,16 @@ int main (int argc, char* argv[]) {
     std::cerr<<"usage: "<<argv[0]<<" <functionid> <a> <b> <n> <intensity>"<<std::endl;
     return -1;
   }
+
+  /*local variable declarations*/
   int functionid = atoi(argv[1]);
   float a = atof(argv[2]);
   float b = atof(argv[3]);
   int n = atoi(argv[4]);
   int intensity = atoi(argv[5]);
-
   float result;
 
-
+  /*check for wrong input*/
   if (functionid < 0 || functionid > 4) {
     std::cerr<<"ERROR: Enter a function id between 1 and 4 "<<std::endl;
   }
