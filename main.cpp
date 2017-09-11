@@ -22,7 +22,7 @@ float f4(float x, int intensity);
 
 /* Function to compute Numerical Integration */
 
-float compute_fx(int functionid, float a, float b, int n, int intensity) {
+float compute_fx(int functionid, float a, float b, unsigned long n, uint32_t intensity) {
 
   /*local variable declarations*/
   float result = 0.0, x = 0.0;
@@ -69,8 +69,8 @@ int main (int argc, char* argv[]) {
   int functionid = atoi(argv[1]);
   float a = atof(argv[2]);
   float b = atof(argv[3]);
-  int n = atoi(argv[4]);
-  int intensity = atoi(argv[5]);
+  unsigned long n = atol(argv[4]);
+  uint32_t intensity = atoi(argv[5]);
   float result;
 
   /*check for wrong input*/
