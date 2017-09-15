@@ -22,7 +22,7 @@ float f4(float x, int intensity);
 
 /* Function to compute Numerical Integration */
 
-float compute_fx(int functionid, float a, float b, unsigned long n, uint32_t intensity) {
+void compute_fx(int functionid, float a, float b, unsigned long n, uint32_t intensity) {
 
   /*local variable declarations*/
   float result = 0.0, x = 0.0;
@@ -30,9 +30,10 @@ float compute_fx(int functionid, float a, float b, unsigned long n, uint32_t int
   int i;
 
   /*loop with calculates the integrated value*/
+  clock_t start = clock();
   for (i=0; i<n; i++) {
 
-    x = a + (i + 0.5) * multiplier;
+    x = a + ((float)i + 0.5) * multiplier;
 
     switch (functionid) {
 
@@ -53,7 +54,9 @@ float compute_fx(int functionid, float a, float b, unsigned long n, uint32_t int
     }
 
   }
-  return result;
+  clock_t end = clock();
+  std::cout<< result;
+  std::cerr<<(double)(end-start)/CLOCKS_PER_SEC;
 
 }
 
@@ -79,9 +82,8 @@ int main (int argc, char* argv[]) {
   }
   else {
 
-  result = compute_fx (functionid, a, b, n, intensity);
+  compute_fx (functionid, a, b, n, intensity);
 
-  std::cout <<"The integrated result is "<< result << std::endl;
 }
 
 
